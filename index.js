@@ -3,6 +3,8 @@ import bodyParser from "body-parser";
 import { sequelize } from "./database/db.js";
 import { Employee } from "./model/employee.js";
 import router from "./routes/hashathonRouter.js";
+import { Hackathon } from "./model/hackathon.js";
+import { HackathonParticipants } from "./model/hackathonParticipants.js";
 const app = express();
 const PORT = 8000;
 
@@ -23,3 +25,5 @@ sequelize
   .catch((err) => {
     console.log("Failed to sync db: " + err.message);
   });
+Employee.hasMany(HackathonParticipants);
+Hackathon.hasMany(HackathonParticipants);

@@ -3,7 +3,7 @@ import {
   getEmployeeByIdService,
   registerEmployeeService,
 } from "../service/employeeService.js";
-
+import { getActiveHackathonsService } from "../service/hackathonService.js";
 export const registerEmployee = async (req, res) => {
   try {
     const token = await registerEmployeeService(req);
@@ -17,7 +17,16 @@ export const registerEmployee = async (req, res) => {
     });
   }
 };
-
+export const getAllActiveHashathon = async (req, res) => {
+  try {
+    const data = await getActiveHackathonsService(req);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(400).json({
+      error: error.message,
+    });
+  }
+};
 export const getAllEmployees = async (req, res) => {
   const data = await getAllEmployeesData();
   res.status(200).json({
