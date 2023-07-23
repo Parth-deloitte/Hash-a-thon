@@ -2,7 +2,7 @@ import Sequelize from "sequelize";
 
 // Option 3: Passing parameters separately (other dialects)
 export const sequelize = new Sequelize(
-  "demo_hashathon",
+  "demo-hashathon",
   "postgres",
   "postgresmaster",
   {

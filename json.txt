@@ -1,57 +1,63 @@
 [
   {
     "username": "john_doe",
-    "email": "john@example.com",
-    "password": "password1",
+    "email": "john.doe@example.com",
+    "password": "123456",
     "experience_level": "Intermediate",
-    "technology_stack": "Node.js HTML CSS",
+    "technology_stack": "Node.js React",
     "business_unit": "Engineering"
   },
   {
-    "username": "jane_smith",
-    "email": "jane@example.com",
-    "password": "password2",
+    "username": "mary_smith",
+    "email": "mary.smith@example.com",
+    "password": "abcdef",
     "experience_level": "Beginner",
-    "technology_stack": "React.js JavaScript",
-    "business_unit": "Design"
+    "technology_stack": "Python Django",
+    "business_unit": "Marketing"
   },
   {
-    "username": "michael_brown",
-    "email": "michael@example.com",
-    "password": "password3",
+    "username": "alex_wong",
+    "email": "alex.wong@example.com",
+    "password": "qwerty",
     "experience_level": "Advanced",
-    "technology_stack": "Python Django",
-    "business_unit": "Data Science"
+    "technology_stack": "Java Spring",
+    "business_unit": "Finance"
   }
 ]
 
 
 [
   {
-    "name": "Web Development Hackathon",
+    "name": "Summer Hackathon",
     "company_name": "Tech Solutions Inc.",
-    "technology_stack": "Node.js React.js MongoDB",
-    "registration_start_date": "2023-07-20T10:00:00Z",
-    "registration_end_date": "2023-07-30T18:00:00Z",
-    "minimum_experience_level": "Beginner",
-    "slots_available": 50
-  },
-  {
-    "name": "Data Science Challenge",
-    "company_name": "DataTech Labs",
-    "technology_stack": "Python Pandas NumPy",
-    "registration_start_date": "2023-08-05T09:00:00Z",
-    "registration_end_date": "2023-08-15T17:00:00Z",
+    "technology_stack": "Node.js React",
+    "registration_start_date": "2023-07-25T00:00:00.000Z",
+    "registration_end_date": "2023-07-30T00:00:00.000Z",
     "minimum_experience_level": "Intermediate",
-    "slots_available": 30
+    "slots_available": 10,
+    "hackathon_start_date": "2023-08-05T00:00:00.000Z",
+    "hackathon_end_date": "2023-08-07T00:00:00.000Z"
   },
   {
-    "name": "UI/UX Designathon",
-    "company_name": "Creative Studio",
-    "technology_stack": "Figma Sketch Adobe XD",
-    "registration_start_date": "2023-08-10T08:00:00Z",
-    "registration_end_date": "2023-08-20T16:00:00Z",
+    "name": "Winter Hackathon",
+    "company_name": "Innovate Corp.",
+    "technology_stack": "Python Django",
+    "registration_start_date": "2023-08-01T00:00:00.000Z",
+    "registration_end_date": "2023-08-10T00:00:00.000Z",
+    "minimum_experience_level": "Beginner",
+    "slots_available": 5,
+    "hackathon_start_date": "2023-09-01T00:00:00.000Z",
+    "hackathon_end_date": "2023-09-03T00:00:00.000Z"
+  },
+  {
+    "name": "Spring Hackathon",
+    "company_name": "Tech Masters Ltd.",
+    "technology_stack": "Java Spring",
+    "registration_start_date": "2023-09-01T00:00:00.000Z",
+    "registration_end_date": "2023-09-10T00:00:00.000Z",
     "minimum_experience_level": "Advanced",
-    "slots_available": 40
+    "slots_available": 8,
+    "hackathon_start_date": "2023-10-01T00:00:00.000Z",
+    "hackathon_end_date": "2023-10-03T00:00:00.000Z"
   }
 ]

@@ -1,10 +1,27 @@
 import {
+  allHackathonService,
+  cancelHackathonService,
   filterParticipantService,
   hostHackathonService,
   listHackathonParticipantsService,
+  modifyHackathonInformationService,
+  registerOrganizerService,
   searchHackathonsService,
 } from "../service/hackathonService.js";
 
+export const registerOrganizer = async (req, res) => {
+  try {
+    const token = await registerOrganizerService(req);
+    res.json({
+      message: "Organizer Registered",
+      token,
+    });
+  } catch (error) {
+    res.status(400).json({
+      error: "Failed to register organizer. " + error.message,
+    });
+  }
+};
 export const hostHackathon = async (req, res) => {
   try {
     await hostHackathonService(req);
@@ -57,5 +74,40 @@ export const listHackathonParticipants = async (req, res) => {
     res.status(400).json({
       error: "Failed to search hackathon. " + error.message,
     });
+  }
+};
+
+export const modifyHackathonInformation = async (req, res) => {
+  try {
+    const msg = await modifyHackathonInformationService(req);
+    res.json({
+      message: msg,
+    });
+  } catch (error) {
+    res.status(400).json({
+      error: error.message,
+    });
+  }
+};
+
+export const cancelHackathon = async (req, res) => {
+  try {
+    const isDeleted = await cancelHackathonService(req);
+    if (isDeleted) {
+      res.json({ message: "Hackathon canceled successfully." });
+    } else {
+      res.status(404).json({ error: "Hackathon not found." });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to cancel Hackathon." });
+  }
+};
+
+export const getAllHackathons = async (req, res) => {
+  try {
+    const allHackathons = await allHackathonService();
+    res.json({ allHackathons });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch all Hackathons." });
   }
 };

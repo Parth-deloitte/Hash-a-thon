@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import { sequelize } from "./database/db.js";
 import { Employee } from "./model/employee.js";
+import { Organizer } from "./model/organizer.js";
 import router from "./routes/hashathonRouter.js";
 import { Hackathon } from "./model/hackathon.js";
 import { HackathonParticipants } from "./model/hackathonParticipants.js";
@@ -30,6 +31,10 @@ Employee.hasMany(HackathonParticipants, {
 });
 Hackathon.hasMany(HackathonParticipants, {
   foreignKey: "hackathon_id",
+  onDelete: "CASCADE",
 });
-HackathonParticipants.belongsTo(Hackathon, { foreignKey: "hackathon_id" });
+HackathonParticipants.belongsTo(Hackathon, {
+  foreignKey: "hackathon_id",
+  onDelete: "CASCADE",
+});
 HackathonParticipants.belongsTo(Employee, { foreignKey: "employee_id" });

@@ -47,24 +47,25 @@ export const signinEmployeeDao = async (username, password) => {
 };
 
 export const isEmployeeRegisteredInOngoingHackathonDao = async (
-  employee_id
+  employee_id,
+  start_date
 ) => {
+  // console.log(start_date);
   try {
-    const currentDate = new Date();
     //console.log("process");
     const ongoingHackathon = await HackathonParticipants.findOne({
       where: {
         employee_id: employee_id,
-        "$Hackathon.registration_start_date$": {
-          [Sequelize.Op.lte]: currentDate,
+        "$Hackathon.hackathon_start_date$": {
+          [Sequelize.Op.lte]: start_date,
         },
-        "$Hackathon.registration_end_date$": {
-          [Sequelize.Op.gte]: currentDate,
+        "$Hackathon.hackathon_end_date$": {
+          [Sequelize.Op.gte]: start_date,
         },
       },
       include: [{ model: Hackathon, as: "Hackathon" }],
     });
-    //console.log("result");
+    // console.log(ongoingHackathon + " result");
     return ongoingHackathon ? true : false;
   } catch (error) {
     throw error;
@@ -75,7 +76,6 @@ export const registerEmployeeForHackathonDao = async (
   hackathon_id
 ) => {
   try {
-    // Check if the hackathon exists
     const hackathon = await Hackathon.findByPk(hackathon_id);
     const employee = await Employee.findByPk(employee_id);
 
@@ -105,16 +105,17 @@ export const registerEmployeeForHackathonDao = async (
     var isAtLeastOneTechMatch = false;
 
     for (const tech of hackathon_tech) {
-      if (employee_tech.includes(tech)) {
-        isAtLeastOneTechMatch = true;
-        break;
+      for (const empTech of employee_tech) {
+        if (tech.toLowerCase() === empTech.toLowerCase()) {
+          isAtLeastOneTechMatch = true;
+          break;
+        }
       }
     }
-
-    if (
-      employee.experience_level < hackathon.minimum_experience_level ||
-      isAtLeastOneTechMatch === false
-    ) {
+    const employeeYears = parseInt(employee.experience_level);
+    const hackathonYears = parseInt(hackathon.minimum_experience_level);
+    console.log(employeeYears < hackathonYears);
+    if (employeeYears < hackathonYears && isAtLeastOneTechMatch === false) {
       throw new Error("Not having required experience" + isAtLeastOneTechMatch);
     }
     const existingRegistration = await HackathonParticipants.findOne({
@@ -127,9 +128,12 @@ export const registerEmployeeForHackathonDao = async (
     if (existingRegistration) {
       throw new Error("Employee is already registered for this hackathon.");
     }
-
+    console.log(hackathon.hackathon_start_date);
     const isRegisteredInOngoingHackathon =
-      await isEmployeeRegisteredInOngoingHackathonDao(employee_id);
+      await isEmployeeRegisteredInOngoingHackathonDao(
+        employee_id,
+        hackathon.hackathon_start_date
+      );
     //console.log(existingRegistration + "new");
     if (isRegisteredInOngoingHackathon) {
       throw new Error(

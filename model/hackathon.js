@@ -38,6 +38,14 @@ export const Hackathon = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    hackathon_start_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    hackathon_end_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
   },
   {
     // Define virtual attributes
