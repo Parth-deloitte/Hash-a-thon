@@ -1,0 +1,57 @@
+[
+  {
+    "username": "john_doe",
+    "email": "john@example.com",
+    "password": "password1",
+    "experience_level": "Intermediate",
+    "technology_stack": "Node.js HTML CSS",
+    "business_unit": "Engineering"
+  },
+  {
+    "username": "jane_smith",
+    "email": "jane@example.com",
+    "password": "password2",
+    "experience_level": "Beginner",
+    "technology_stack": "React.js JavaScript",
+    "business_unit": "Design"
+  },
+  {
+    "username": "michael_brown",
+    "email": "michael@example.com",
+    "password": "password3",
+    "experience_level": "Advanced",
+    "technology_stack": "Python Django",
+    "business_unit": "Data Science"
+  }
+]
+
+
+[
+  {
+    "name": "Web Development Hackathon",
+    "company_name": "Tech Solutions Inc.",
+    "technology_stack": "Node.js React.js MongoDB",
+    "registration_start_date": "2023-07-20T10:00:00Z",
+    "registration_end_date": "2023-07-30T18:00:00Z",
+    "minimum_experience_level": "Beginner",
+    "slots_available": 50
+  },
+  {
+    "name": "Data Science Challenge",
+    "company_name": "DataTech Labs",
+    "technology_stack": "Python Pandas NumPy",
+    "registration_start_date": "2023-08-05T09:00:00Z",
+    "registration_end_date": "2023-08-15T17:00:00Z",
+    "minimum_experience_level": "Intermediate",
+    "slots_available": 30
+  },
+  {
+    "name": "UI/UX Designathon",
+    "company_name": "Creative Studio",
+    "technology_stack": "Figma Sketch Adobe XD",
+    "registration_start_date": "2023-08-10T08:00:00Z",
+    "registration_end_date": "2023-08-20T16:00:00Z",
+    "minimum_experience_level": "Advanced",
+    "slots_available": 40
+  }
+]

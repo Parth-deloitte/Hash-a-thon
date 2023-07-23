@@ -2,8 +2,13 @@ import {
   getAllEmployeesData,
   getEmployeeByIdService,
   registerEmployeeService,
+  registerEmployeeForHackathonService,
 } from "../service/employeeService.js";
-import { getActiveHackathonsService } from "../service/hackathonService.js";
+import {
+  getActiveHackathonsService,
+  getPastHackathonsService,
+  getUpcomingHackathonsService,
+} from "../service/hackathonService.js";
 export const registerEmployee = async (req, res) => {
   try {
     const token = await registerEmployeeService(req);
@@ -27,6 +32,42 @@ export const getAllActiveHashathon = async (req, res) => {
     });
   }
 };
+
+export const getAllPastHashathon = async (req, res) => {
+  try {
+    const data = await getPastHackathonsService(req);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(400).json({
+      error: error.message,
+    });
+  }
+};
+
+export const getAllUpcomingHashathon = async (req, res) => {
+  try {
+    const data = await getUpcomingHackathonsService(req);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(400).json({
+      error: error.message,
+    });
+  }
+};
+
+export const registerEmployeeForHackathon = async (req, res) => {
+  try {
+    await registerEmployeeForHackathonService(req);
+    res
+      .status(200)
+      .json({ message: "Employee Registered for Hackathon succesfully" });
+  } catch (error) {
+    res.status(400).json({
+      error: error.message,
+    });
+  }
+};
+
 export const getAllEmployees = async (req, res) => {
   const data = await getAllEmployeesData();
   res.status(200).json({

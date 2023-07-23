@@ -2,6 +2,7 @@ import {
   getAllEmployeesDao,
   getEmployeeByIdDao,
   registerEmployeeDao,
+  registerEmployeeForHackathonDao,
 } from "../dao/employeeDao.js";
 import jwt from "jsonwebtoken";
 
@@ -23,4 +24,10 @@ export const getEmployeeByIdService = async (req) => {
   // console.log(typeof id);
   // const data = playerList.filter((player) => player.id === parseInt(id));
   return await getEmployeeByIdDao(id);
+};
+
+export const registerEmployeeForHackathonService = async (req) => {
+  const { employee_id, hackathon_id } = req.body;
+
+  return await registerEmployeeForHackathonDao(employee_id, hackathon_id);
 };

@@ -25,5 +25,10 @@ sequelize
   .catch((err) => {
     console.log("Failed to sync db: " + err.message);
   });
-Employee.hasMany(HackathonParticipants);
-Hackathon.hasMany(HackathonParticipants);
+Employee.hasMany(HackathonParticipants, {
+  foreignKey: "employee_id",
+});
+Hackathon.hasMany(HackathonParticipants, {
+  foreignKey: "hackathon_id",
+});
+HackathonParticipants.belongsTo(Hackathon, { foreignKey: "hackathon_id" });
