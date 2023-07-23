@@ -1,5 +1,7 @@
 import { Hackathon } from "../model/hackathon.js";
 import Sequelize from "sequelize";
+import { HackathonParticipants } from "../model/hackathonParticipants.js";
+import { Employee } from "../model/employee.js";
 export const hostHackathonDao = async (req, res) => {
   const {
     name,
@@ -158,6 +160,47 @@ export const searchHackathonsDao = async (req) => {
     const hackathons = await Hackathon.findAll(searchQuery);
     //console.log(hackathons);
     return hackathons;
+  } catch (error) {
+    throw error;
+  }
+};
+export const filterParticipantDao = async (parameter) => {
+  try {
+    const techs = parameter.split(" ");
+    console.log(parameter);
+    const techConditions = techs.map((tech) => ({
+      technology_stack: {
+        [Sequelize.Op.iLike]: `%${tech}%`,
+      },
+    }));
+    console.log(techConditions);
+
+    const searchQuery = {
+      where: {
+        [Sequelize.Op.or]: [
+          { experience_level: { [Sequelize.Op.iLike]: `%${parameter}%` } },
+          { business_unit: { [Sequelize.Op.iLike]: `%${parameter}%` } },
+          ...techConditions,
+        ],
+      },
+    };
+
+    const employees = await Employee.findAll(searchQuery);
+    //console.log(hackathons);
+    return employees;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const listHackathonParticipantsDao = async (hackathonId) => {
+  try {
+    const participants = await HackathonParticipants.findAll({
+      where: { hackathon_id: hackathonId },
+      include: [{ model: Employee, attributes: ["username", "email"] }],
+    });
+    console.log(participants);
+    return participants;
   } catch (error) {
     throw error;
   }

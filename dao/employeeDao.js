@@ -25,7 +25,7 @@ export const registerEmployeeDao = async (req) => {
       technology_stack,
       business_unit,
     });
-    console.log(employee); // Log the employee object to check if it's created successfully
+    console.log(employee);
     return employee.employee_id; // Return the employeeId after successful creation
   } catch (error) {
     //console.error(error); // Log the error for debugging purposes
@@ -99,8 +99,10 @@ export const registerEmployeeForHackathonDao = async (
       throw new Error("Hackathon slots are full.");
     }
     const employee_tech = employee.technology_stack.split(" ");
-    const hackathon_tech = hackathon.technology_stack;
-    const isAtLeastOneTechMatch = false;
+    const hackathon_tech = hackathon.technology_stack.split(" ");
+    console.log(employee_tech);
+    console.log(hackathon_tech);
+    var isAtLeastOneTechMatch = false;
 
     for (const tech of hackathon_tech) {
       if (employee_tech.includes(tech)) {
@@ -148,12 +150,41 @@ export const registerEmployeeForHackathonDao = async (
   }
 };
 
+export const listHackathonDao = async (employeeId) => {
+  try {
+    const hackathons = await HackathonParticipants.findAll({
+      where: { employee_id: employeeId },
+      include: [{ model: Hackathon, attributes: ["name", "company_name"] }],
+    });
+    console.log(hackathons);
+    return hackathons;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getEmployeeByIdDao = async (employeeId) => {
   try {
     const employee = await Employee.findByPk(employeeId);
     return employee;
   } catch (error) {
     throw new Error("Failed to get employee by ID");
+  }
+};
+
+export const getHackathonStatusDao = async (hackathonId) => {
+  try {
+    const hackathon = await Hackathon.findByPk(hackathonId);
+
+    if (!hackathon) {
+      throw new Error("hackathon not found.");
+    }
+
+    const status = hackathon.get("status");
+    console.log(status);
+    return status;
+  } catch (error) {
+    throw error;
   }
 };
 

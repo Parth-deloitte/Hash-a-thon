@@ -32,3 +32,4 @@ Hackathon.hasMany(HackathonParticipants, {
   foreignKey: "hackathon_id",
 });
 HackathonParticipants.belongsTo(Hackathon, { foreignKey: "hackathon_id" });
+HackathonParticipants.belongsTo(Employee, { foreignKey: "employee_id" });

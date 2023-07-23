@@ -1,6 +1,8 @@
 import {
   getAllEmployeesDao,
   getEmployeeByIdDao,
+  getHackathonStatusDao,
+  listHackathonDao,
   registerEmployeeDao,
   registerEmployeeForHackathonDao,
 } from "../dao/employeeDao.js";
@@ -31,3 +33,18 @@ export const registerEmployeeForHackathonService = async (req) => {
 
   return await registerEmployeeForHackathonDao(employee_id, hackathon_id);
 };
+
+
+export const listHackathonService = async (req) => {
+  const { id } = req.params;
+
+  return await listHackathonDao(id);
+};
+
+export const getHackathonStatusService = async (req) => {
+  const { id } = req.params;
+
+  return await getHackathonStatusDao(id);
+};
+
+

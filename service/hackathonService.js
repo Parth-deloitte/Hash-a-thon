@@ -1,8 +1,10 @@
 import {
+  filterParticipantDao,
   getActiveHackathonsDao,
   getPastHackathonsDao,
   getUpcomingHackathonsDao,
   hostHackathonDao,
+  listHackathonParticipantsDao,
   searchHackathonsDao,
 } from "../dao/hackathonDao.js";
 
@@ -24,4 +26,14 @@ export const getUpcomingHackathonsService = async (req) => {
 
 export const searchHackathonsService = async (req) => {
   return await searchHackathonsDao(req);
+};
+
+export const listHackathonParticipantsService = async (req) => {
+  const { id } = req.params;
+  return await listHackathonParticipantsDao(id);
+};
+
+export const filterParticipantService = async (req) => {
+  const { parameter } = req.params;
+  return await filterParticipantDao(parameter);
 };

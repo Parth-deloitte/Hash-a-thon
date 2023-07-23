@@ -3,6 +3,8 @@ import {
   getEmployeeByIdService,
   registerEmployeeService,
   registerEmployeeForHackathonService,
+  listHackathonService,
+  getHackathonStatusService,
 } from "../service/employeeService.js";
 import {
   getActiveHackathonsService,
@@ -61,6 +63,28 @@ export const registerEmployeeForHackathon = async (req, res) => {
     res
       .status(200)
       .json({ message: "Employee Registered for Hackathon succesfully" });
+  } catch (error) {
+    res.status(400).json({
+      error: error.message,
+    });
+  }
+};
+
+export const listHackathon = async (req, res) => {
+  try {
+    const hackathons = await listHackathonService(req);
+    res.status(200).json({ hackathons });
+  } catch (error) {
+    res.status(400).json({
+      error: error.message,
+    });
+  }
+};
+
+export const getHackathonStatus = async (req, res) => {
+  try {
+    const status = await getHackathonStatusService(req);
+    res.status(200).json({ status });
   } catch (error) {
     res.status(400).json({
       error: error.message,
