@@ -1,14 +1,15 @@
 import Sequelize from "sequelize";
 
 // Option 3: Passing parameters separately (other dialects)
-export const sequelize = new Sequelize(
-  "demo-hashathon",
-  "postgres",
-  "postgresmaster",
-  {
-    host: "localhost",
-    port: 5433,
-    dialect:
-      "postgres" /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */,
-  }
-);
+
+const databaseName = "demohashathon";
+const username = "postgresmaster";
+const password = "FoflVjJRhv8OG19RZ7y8uOJEjKCW36JR";
+const host = "dpg-ciuv48tgkuvoiga2umeg-a";
+const port = 5432;
+
+export const sequelize = new Sequelize(databaseName, username, password, {
+  host,
+  port,
+  dialect: "postgres",
+});
